@@ -49,6 +49,7 @@
       <th>Longitud</th>
       <th>Con Signo</th>
       <th>Sin Signo</th>
+      <th>Flotante +- </th>
     </tr>
   </thead>
   <tbody>
@@ -66,11 +67,13 @@
       <td>32-bit</td>
       <td><code>i32</code></td>
       <td><code>u32</code></td>
+      <td><code>f32</code></td>
     </tr>
     <tr>
       <td>64-bit</td>
       <td><code>i64</code></td>
       <td><code>u64</code></td>
+      <td><code>f64</code></td>
     </tr>
     <tr>
       <td>128-bit</td>
