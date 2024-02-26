@@ -4,7 +4,7 @@ restar su valor. Se deben imprimir los resultados */
 use std::io;
 
 fn main() {
-    let mut variable_Flotante: f64 = 3.14;
+    let mut variable_flotante: f64 = 3.14; //Convencion snake case
 
     println!("Ingrese un numero: ");
 
@@ -13,15 +13,26 @@ fn main() {
         .read_line(&mut entrada)
         .ok()
         .expect("Fallo de linea");
-    let numero: i32 = match entrada.trim().parse() {
+    let numero: f64 = match entrada.trim().parse() {
         //trim elimina los espacio del princio/final de la entrada del usuario
-        Ok(num) => num,
+        Ok(num) => num, 
         Err(_) => {
             println!("Error ingrese un numero valido: ");
             return;
         }
     };
+    
+    //Multiplicacion
+    let mut multiplicacion: f64 = numero * variable_flotante;
+    println!("Resultado de la multiplicacion: {}", multiplicacion); //{} me sirven para ubicar el valor a mostrar
 
-    let mut multiplicacion: f64 = numero * variable_Flotante;
-    println!("Resultado de {}la multiplicacion: ", multiplicacion);
+    //Division
+    let mut division: f64 = numero / variable_flotante;
+    println!("Resultado de la division: {}", division);
+
+    let mut suma: f64 = numero + variable_flotante;
+    println!("Resultado de la suma: {}", suma);
+
+    let mut resta: f64 = numero - variable_flotante;
+    println!("Resultado de la resta: {}", resta);
 }

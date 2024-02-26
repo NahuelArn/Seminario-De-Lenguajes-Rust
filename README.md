@@ -10,7 +10,7 @@
   fn main() {
     println!("sarsa");
   }
-
+  //Convencion snake case sarasa_sarasa_pepe
   comentario 1 linea: " // "
   comentario > 1: " /* */ " 
   Asignacion:  " = "
