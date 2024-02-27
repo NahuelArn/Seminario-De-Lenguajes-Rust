@@ -25,6 +25,8 @@
   Negación: " ! "
   Verdadero: " true "
   Falso: " false "
+  booleano: " bool "
+  caracter: " char "
   Imprimir: " println!() "
 
   ------Variables --------
@@ -37,7 +39,7 @@
   ------tipos de datos --------
   let x = 5; // Variable entera inmutable
   let y = 3.5; // Variable flotante inmutable
-  let z = "Hola, mundo!"; // Variable de cadena inmutable
+  let z = "saasasra"; // Variable de cadena inmutable
   const PI: f64 = 3.14159; // Constante
   //let const //diferencia cuando quiero una variable inmutable en su ambito local y constante global inmutable
 ```
