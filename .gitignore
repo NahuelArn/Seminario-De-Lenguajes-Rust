@@ -1,5 +1,6 @@
 /target
-cargo.lock
-cargo.toml
+*.exe
+*.pdb
 /src
-
+Cargo.lock
+Cargo.toml
