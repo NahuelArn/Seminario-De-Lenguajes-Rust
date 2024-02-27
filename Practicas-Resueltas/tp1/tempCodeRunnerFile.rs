@@ -1,1 +1,1 @@
-String::from("hola")
+String
