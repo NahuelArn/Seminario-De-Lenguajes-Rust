@@ -24,9 +24,14 @@ fn main() {
 
     let resultado: bool = logico && valor_ingresado;
     println!("Valor logico con un AND: {}", logico);
-    println!("Valor logico entre: {} AND {} es: {}", logico, valor_ingresado, resultado);
+    println!(
+        "Valor logico entre: {} AND {} es: {}",
+        logico, valor_ingresado, resultado
+    );
 
-    
     let resultado2: bool = logico || valor_ingresado;
-    println!("Valog logico entre {} OR {} es: {}",logico,valor_ingresado,resultado2)
+    println!(
+        "Valog logico entre {} OR {} es: {}",
+        logico, valor_ingresado, resultado2
+    )
 }
