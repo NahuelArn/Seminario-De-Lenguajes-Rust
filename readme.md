@@ -317,6 +317,43 @@
 
 ```
 
+<h1 align="center"> Ownership y borrowing: funciones </h1>
+
+```rs
+    //no aplica por ser un tipo de dato q implementa el trait copy
+    fn main() {
+        let mut dato1= 10;
+        mi_funcion(dato1);
+        println!("{}", dato1);
+    }
+    fn mi_funcion(mut data: i32){
+        data+=1;
+        println!("muestro data en la funcion: {}", data);
+    }
+
+    //Los enteros, si o si necesitan ser desreferenciados (se pasa una direccion de memoria)
+    fn main() {
+        let mut dato1= 10;
+        mi_funcion(&mut dato1);
+        println!("{}", dato1);
+    }
+    fn mi_funcion(data: &mut i32){
+        *data+=1;
+        println!("muestro data en la funcion: {}", data);
+    }
+
+    //aca si no le paso una referencia a la funcion, no va saber que es data
+    fn main() {
+        let dato1= String::from(" Seminario de: ");
+        mi_funcion(&dato1);
+        println!("{}", dato1);
+    }
+    fn mi_funcion(data: &String){
+        println!("muestro data en la funcion: {}", data);
+    }
+   
+```
+
 <h1 align="center"> Tiempo de vida </h1>
 
 ```rs
