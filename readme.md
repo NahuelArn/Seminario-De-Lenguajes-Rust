@@ -376,3 +376,17 @@
   &'a mut i32 // una referencia mutable con explicito lifetime
 
 ```
+
+<h1 align="center"> Tiempo de vida </h1>
+
+```rs
+  use rand::Rng;  //importo biblioteca de numeros aleatorios
+
+  fn main() {
+      let mut rng = rand::thread_rng(); // me da un generador de números aleatorios
+      let random_number: u32 = rng.gen_range(0..=1); //genero un numero aleatorio entre 0 y 1
+      println!("Número aleatorio: {}", random_number);
+  }
+
+
+```
