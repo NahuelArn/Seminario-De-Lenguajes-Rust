@@ -28,7 +28,7 @@ impl Fecha {
     //helper que le paso un mes y me tira la cantidad de dias que tiene ese mes, incluso evalua si el anho es bisiesto
     fn cantidad_de_dias(&self, mes: u32) -> u32 {
         //funcion helper
-        let let_dias_del_mes: u32 = match mes {
+        let dias_del_mes: u32 = match mes {
             1 | 3 | 5 | 7 | 8 | 10 | 12 => 31,
             4 | 6 | 9 | 11 => 30,
             2 => {
@@ -40,7 +40,7 @@ impl Fecha {
             }
             _ => return 0,
         };
-        let_dias_del_mes
+        dias_del_mes
     }
     //➢ es_fecha_valida: retorna true si es una fecha válida, false caso contrario.//tenga en cuenta los años bisiestos también.
     fn _es_fecha_valida(&self) -> bool {
@@ -133,7 +133,8 @@ pub fn main() {
 }
 
 #[test]
-fn test_es_bisiesto() { //deberian ser 2 test separados, q solo me da la data de uno (si falla me dice igual)
+fn test_es_bisiesto() {
+    //deberian ser 2 test separados,igual andan, q solo me da la data de uno (si falla me dice igual)
     // Año bisiesto
     assert_eq!(Fecha::new(1, 1, 2020).es_bisiesto(), true);
     // Año no bisiesto
