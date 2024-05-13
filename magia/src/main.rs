@@ -25,7 +25,8 @@ fn main() {
     // tp3::eje6::main();
     // tp3::eje7::main();
     // tp3::eje8::main();
-    tp3::eje9::main();
+    // tp3::eje9::main();
+    tp3::eje10::main();
 }
 
 // 0 1 2 3 4 5 6
