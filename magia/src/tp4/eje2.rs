@@ -1,12 +1,14 @@
-
+// use std::cmp::PartialEq;
 /*
-ayudin 
+ayudin
  iter_v.all(closure);
    iter_v.any(closure);
    iter_v.filter(closure);
    iter_v.filter_map(closure);
    iter_v.skip_while(closure)
 */
+
+use std::i128::MIN;
 
 trait Mayor {
     fn mayor_salario(&self, num: f64) -> bool;
@@ -20,6 +22,7 @@ impl<'a> Mayor for Persona<'a> {
         self.edad > num
     }
 }
+#[derive(PartialEq, Debug)]
 struct Persona<'a> {
     nombre: &'a str,
     apellido: &'a str,
@@ -117,34 +120,151 @@ d- Escriba una función que reciba un vector de personas y un nombre de una ciud
 */
 //any una vez que encuentra uno que cumple la condicion corta
 fn hay_alguien_en_la_ciudad<'a>(vec: &'a Vec<Persona<'a>>, ciudad: &str) -> bool {
-	vec.iter().any(|x| x.ciudad == ciudad)
+    vec.iter().any(|x| x.ciudad == ciudad)
 }
 
-/* 
+/*
 e- Escriba una función que reciba un arreglo de personas y una persona y retorna true si la
  persona existe en el arreglo, false caso contrario
 */
-fn existe_la_persona<'a>(vec: &'a Vec<Persona<'a>>,p: Persona)-{
-
+// fn existe<'a>(vec: &'a Vec<Persona<'a>>, p: Persona) -> bool {
+//     vec.contains(&p)
+// }
+fn existe_la_persona<'a>(vec: &'a Vec<Persona<'a>>, p: &Persona) -> bool {
+    vec.iter().any(|x| x == p)
 }
 
-pub fn main() {
-    // let persona = Persona::new("Pepe", "Pepe", "Pepe", "Pepe", 1000.0, 23);
-    // let mut vec:Vec<Persona> = Vec::new();
-    // vec.push(persona);
-    // let casa = salario_mayor(&vec, 900.0);
-    // if casa.len() == 1 {
-    // 	println!("Salario mayor a 900.0: {}", casa[0].nombre);
-    // }
+/*
+f -Escriba una función que reciba un arreglo de personas y retorna un arreglo con las
+edades de las personas.
+*/
+fn edades_de_la_persona<'a>(vec: &'a Vec<Persona<'a>>) -> Vec<u8> {
+    vec.iter().map(|persona| persona.edad).collect()
 }
 
+/*
+g - Escriba una función que reciba un arreglo de personas y retorna la persona con el menor
+salario y la persona con el mayor salario, en caso de que haya más de una persona en cada
+categoría desempatar por la edad más grande.
 
+*/
+// una referencia de un vector de referencias a personas que contiene referencias a personas
+// fn mayor_menor_salario<'a>(vec: & 'a Vec<&'a Persona<'a>>) {
+// una referencia de un vector a personas que contiene referencias a personas
 
+//arranco los el min,  max en el valor inicial de mi vector
+fn mayor_menor_salario<'a>(vec: &'a Vec<Persona<'a>>) -> (&'a Persona<'a>, &'a Persona<'a>) {
+    let mut max: &Persona = &vec[0];
+    let mut min: &Persona = &vec[0];
+    let decide = |x: &Persona| (max.salario == x.salario && max.edad > x.edad);
+    let resuelve_max = |x: &Persona| x.salario > max.salario || (decide(x));
+    let resuelve_min = |x: &Persona| x.salario < min.salario || (decide(x));
+    for i in vec.iter() {
+        if resuelve_max(&i) {
+            max = i;
+        }
+        if resuelve_min(&i) {
+            min = i;
+        }
+    }
+    (max, min)
+}
 
+pub fn main() {}
 
+#[test]
+fn test_salario_mayor() {
+    let p1 = Persona::new("Pepe", "Pepe", "Pepe", "Pepe", 1000.0, 23);
+    let p2 = Persona::new("Pepe", "Pepe", "Pepe", "Pepe", 2000.0, 23);
+    let p3 = Persona::new("Pepe", "Pepe", "Pepe", "Pepe", 3000.0, 23);
+    let vec = vec![p1, p2, p3]; // Change the type of vec from &Vec<&Persona<'_>> to &Vec<Persona<'_>>
+    let res = salario_mayor(&vec, 2000.0);
+    assert_eq!(res.len(), 1);
+    assert_eq!(res[0].salario, 3000.0);
+}
 
+#[test]
+fn test_persona_perfil() {
+    let p1 = Persona::new("Pepe", "Pepe", "Pepe", "CiudadDePepe", 1000.0, 23);
+    let p2 = Persona::new("Pepe", "Pepe", "Pepe", "CiudadDePepe", 2000.0, 23);
+    let p3 = Persona::new("Pepe", "Pepe", "Pepe", "CiudadDePepe", 3000.0, 23);
+    let vec = vec![p1, p2, p3];
+    let res = persona_perfil(&vec, 20, "CiudadDePepe".to_string());
+    assert_eq!(res.len(), 3);
+    let res = persona_perfil(&vec, 20, "Como? ciudad?".to_string());
+    assert_ne!(res.len(), 2); //que calidad el assert_ne!
+}
 
-//Primera version tp
+#[test]
+fn test_todos_en_la_ciudad() {
+    let p1 = Persona::new("Pepe", "Pepe", "Pepe", "CiudadDePepe", 1000.0, 23);
+    let p2 = Persona::new("Pepe", "Pepe", "Pepe", "CiudadDePepe", 2000.0, 23);
+    let p3 = Persona::new("Pepe", "Pepe", "Pepe", "CiudadDePepe", 3000.0, 23);
+    let vec = vec![p1, p2, p3];
+    assert_eq!(tamos_todos_ciudad(&vec, "CiudadDePepe"), true);
+    assert_eq!(tamos_todos_ciudad(&vec, "Como? ciudad?"), false);
+}
+
+#[test]
+fn test_hay_alguien_en_la_ciudad() {
+    let p1 = Persona::new("Pepe", "Pepe", "Pepe", "CiudadDePepe", 1000.0, 23);
+    let p2 = Persona::new("Pepe", "Pepe", "Pepe", "CiudadDePepe", 2000.0, 23);
+    let p3 = Persona::new("Pepe", "Pepe", "Pepe", "Buenos Aires", 3000.0, 23);
+    let vec = vec![p1, p2, p3];
+    assert_eq!(hay_alguien_en_la_ciudad(&vec, "CiudadDePepe"), true);
+    assert_eq!(hay_alguien_en_la_ciudad(&vec, "Buenos Aires"), true);
+    assert_eq!(hay_alguien_en_la_ciudad(&vec, "La"), false);
+}
+
+#[test]
+fn test_existe_la_persona() {
+    let p1 = Persona::new("Pepe", "Pepe", "Pepe", "CiudadDePepe", 1000.0, 23);
+    let p2 = Persona::new("Pepe", "Pepe", "Pepe", "CiudadDePepe", 2000.0, 23);
+    let p3 = Persona::new("Fernandez", "Macri", "nose1", "Fernandez", 3000.0, 23);
+    let vec = vec![p1, p2, p3];
+    assert_eq!(existe_la_persona(&vec, &vec[0]), true);
+    assert_eq!(existe_la_persona(&vec, &vec[1]), true);
+    assert_eq!(existe_la_persona(&vec, &vec[2]), true);
+    assert_eq!(
+        existe_la_persona(
+            &vec,
+            &Persona::new("Fernandez", "Macri", "nose1", "Fernandez", 3000.0, 23)
+        ),
+        true
+    );
+    assert_eq!(
+        existe_la_persona(
+            &vec,
+            &Persona::new("Macri", "Pepe", "Pepe", "CiudadDePepe", 1000.0, 24)
+        ),
+        false
+    );
+}
+
+#[test]
+fn test_edades_de_la_persona() {
+    let p1 = Persona::new("Pepe", "Pepe", "Pepe", "CiudadDePepe", 1000.0, 22);
+    let p2 = Persona::new("Pepe", "Pepe", "Pepe", "CiudadDePepe", 2000.0, 23);
+    let p3 = Persona::new("Fernandez", "Macri", "nose1", "Fernandez", 3000.0, 44);
+    let vec = vec![p1, p2, p3];
+    assert_eq!(edades_de_la_persona(&vec), vec![22, 23, 44]);
+}
+
+#[test]
+fn test_mayor_menor_salario() {
+    let p1 = Persona::new("Pepe1", "Pepe", "Pepe", "CiudadDePepe", 1000.0, 22);
+    let p2 = Persona::new("Pepe", "Pepe", "Pepe", "CiudadDePepe", 2000.0, 23);
+    let p3 = Persona::new("Fernandez", "Macri", "nose1", "Fernandez", 3000.0, 44);
+    let vec = vec![p1, p2, p3];
+    let (max, min) = mayor_menor_salario(&vec);
+    // print!("{:?}", min);
+    // println!("{:?}", max);
+    // print!("HOLAAAAAAAAAAAAAAAAAA");
+    assert_eq!(max, &vec[2]);
+    assert_eq!(min, &vec[0]);
+}
+
+//Primera version haciendo el tp
 // struct Persona<'a> {
 //     nombre: &'a str,
 //     apellido: &'a str,
