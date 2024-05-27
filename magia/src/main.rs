@@ -1,5 +1,6 @@
 mod tp2;
 mod tp3;
+mod tp4;
 fn main() {
     // tp2::eje1::main();
     //tp2::eje2::main();
@@ -27,8 +28,11 @@ fn main() {
     // tp3::eje8::main();
     // tp3::eje9::main();
     // tp3::eje10::main();
+
+    //----------------arranca el tp4-------------------
+    // tp4::pruebas::main();
+    // tp4::eje1::main();  
+       tp4::eje2::main();  
+
+    
 }
-
-// 0 1 2 3 4 5 6
-
-// i i p i p i p
