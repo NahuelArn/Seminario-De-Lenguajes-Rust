@@ -32,7 +32,8 @@ fn main() {
     //----------------arranca el tp4-------------------
     // tp4::pruebas::main();
     // tp4::eje1::main();  
-       tp4::eje2::main();  
+    //    tp4::eje2::main();  
+    tp4::eje3::main(); 
 
     
 }
