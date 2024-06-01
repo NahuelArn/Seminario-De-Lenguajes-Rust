@@ -1,0 +1,11 @@
+D:\Escritorio\Rust\Seminario-De-Lenguajes-Rust\magia\target\debug\deps\libdigest-8bd530ab67ffd358.rmeta: C:\Users\nahue\.cargo\registry\src\index.crates.io-6f17d22bba15001f\digest-0.9.0\src\lib.rs C:\Users\nahue\.cargo\registry\src\index.crates.io-6f17d22bba15001f\digest-0.9.0\src\digest.rs C:\Users\nahue\.cargo\registry\src\index.crates.io-6f17d22bba15001f\digest-0.9.0\src\dyn_digest.rs C:\Users\nahue\.cargo\registry\src\index.crates.io-6f17d22bba15001f\digest-0.9.0\src\errors.rs C:\Users\nahue\.cargo\registry\src\index.crates.io-6f17d22bba15001f\digest-0.9.0\src\fixed.rs C:\Users\nahue\.cargo\registry\src\index.crates.io-6f17d22bba15001f\digest-0.9.0\src\variable.rs C:\Users\nahue\.cargo\registry\src\index.crates.io-6f17d22bba15001f\digest-0.9.0\src\xof.rs
+
+D:\Escritorio\Rust\Seminario-De-Lenguajes-Rust\magia\target\debug\deps\digest-8bd530ab67ffd358.d: C:\Users\nahue\.cargo\registry\src\index.crates.io-6f17d22bba15001f\digest-0.9.0\src\lib.rs C:\Users\nahue\.cargo\registry\src\index.crates.io-6f17d22bba15001f\digest-0.9.0\src\digest.rs C:\Users\nahue\.cargo\registry\src\index.crates.io-6f17d22bba15001f\digest-0.9.0\src\dyn_digest.rs C:\Users\nahue\.cargo\registry\src\index.crates.io-6f17d22bba15001f\digest-0.9.0\src\errors.rs C:\Users\nahue\.cargo\registry\src\index.crates.io-6f17d22bba15001f\digest-0.9.0\src\fixed.rs C:\Users\nahue\.cargo\registry\src\index.crates.io-6f17d22bba15001f\digest-0.9.0\src\variable.rs C:\Users\nahue\.cargo\registry\src\index.crates.io-6f17d22bba15001f\digest-0.9.0\src\xof.rs
+
+C:\Users\nahue\.cargo\registry\src\index.crates.io-6f17d22bba15001f\digest-0.9.0\src\lib.rs:
+C:\Users\nahue\.cargo\registry\src\index.crates.io-6f17d22bba15001f\digest-0.9.0\src\digest.rs:
+C:\Users\nahue\.cargo\registry\src\index.crates.io-6f17d22bba15001f\digest-0.9.0\src\dyn_digest.rs:
+C:\Users\nahue\.cargo\registry\src\index.crates.io-6f17d22bba15001f\digest-0.9.0\src\errors.rs:
+C:\Users\nahue\.cargo\registry\src\index.crates.io-6f17d22bba15001f\digest-0.9.0\src\fixed.rs:
+C:\Users\nahue\.cargo\registry\src\index.crates.io-6f17d22bba15001f\digest-0.9.0\src\variable.rs:
+C:\Users\nahue\.cargo\registry\src\index.crates.io-6f17d22bba15001f\digest-0.9.0\src\xof.rs:

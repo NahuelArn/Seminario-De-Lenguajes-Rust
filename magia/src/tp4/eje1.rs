@@ -20,7 +20,7 @@ impl Primo for i32 {
 
 fn cantidad_primos_vector(vec: Vec<i32>) -> u32 {
     let mut cant_primos: u32 = 0;
-    let resuelve = |x: &i32| x.es_primo();
+    let resuelve = |x: &i32| x.es_primo(); 
     for i in vec.iter() {
         if resuelve(i) {
             cant_primos += 1;
