@@ -1,0 +1,13 @@
+D:\Escritorio\Rust\Seminario-De-Lenguajes-Rust\magia\target\debug\deps\libtoml-c6e2544ed86c6629.rmeta: C:\Users\nahue\.cargo\registry\src\index.crates.io-6f17d22bba15001f\toml-0.8.13\src\lib.rs C:\Users\nahue\.cargo\registry\src\index.crates.io-6f17d22bba15001f\toml-0.8.13\src\map.rs C:\Users\nahue\.cargo\registry\src\index.crates.io-6f17d22bba15001f\toml-0.8.13\src\value.rs C:\Users\nahue\.cargo\registry\src\index.crates.io-6f17d22bba15001f\toml-0.8.13\src\de.rs C:\Users\nahue\.cargo\registry\src\index.crates.io-6f17d22bba15001f\toml-0.8.13\src\ser.rs C:\Users\nahue\.cargo\registry\src\index.crates.io-6f17d22bba15001f\toml-0.8.13\src\macros.rs C:\Users\nahue\.cargo\registry\src\index.crates.io-6f17d22bba15001f\toml-0.8.13\src\edit.rs C:\Users\nahue\.cargo\registry\src\index.crates.io-6f17d22bba15001f\toml-0.8.13\src\fmt.rs C:\Users\nahue\.cargo\registry\src\index.crates.io-6f17d22bba15001f\toml-0.8.13\src\table.rs
+
+D:\Escritorio\Rust\Seminario-De-Lenguajes-Rust\magia\target\debug\deps\toml-c6e2544ed86c6629.d: C:\Users\nahue\.cargo\registry\src\index.crates.io-6f17d22bba15001f\toml-0.8.13\src\lib.rs C:\Users\nahue\.cargo\registry\src\index.crates.io-6f17d22bba15001f\toml-0.8.13\src\map.rs C:\Users\nahue\.cargo\registry\src\index.crates.io-6f17d22bba15001f\toml-0.8.13\src\value.rs C:\Users\nahue\.cargo\registry\src\index.crates.io-6f17d22bba15001f\toml-0.8.13\src\de.rs C:\Users\nahue\.cargo\registry\src\index.crates.io-6f17d22bba15001f\toml-0.8.13\src\ser.rs C:\Users\nahue\.cargo\registry\src\index.crates.io-6f17d22bba15001f\toml-0.8.13\src\macros.rs C:\Users\nahue\.cargo\registry\src\index.crates.io-6f17d22bba15001f\toml-0.8.13\src\edit.rs C:\Users\nahue\.cargo\registry\src\index.crates.io-6f17d22bba15001f\toml-0.8.13\src\fmt.rs C:\Users\nahue\.cargo\registry\src\index.crates.io-6f17d22bba15001f\toml-0.8.13\src\table.rs
+
+C:\Users\nahue\.cargo\registry\src\index.crates.io-6f17d22bba15001f\toml-0.8.13\src\lib.rs:
+C:\Users\nahue\.cargo\registry\src\index.crates.io-6f17d22bba15001f\toml-0.8.13\src\map.rs:
+C:\Users\nahue\.cargo\registry\src\index.crates.io-6f17d22bba15001f\toml-0.8.13\src\value.rs:
+C:\Users\nahue\.cargo\registry\src\index.crates.io-6f17d22bba15001f\toml-0.8.13\src\de.rs:
+C:\Users\nahue\.cargo\registry\src\index.crates.io-6f17d22bba15001f\toml-0.8.13\src\ser.rs:
+C:\Users\nahue\.cargo\registry\src\index.crates.io-6f17d22bba15001f\toml-0.8.13\src\macros.rs:
+C:\Users\nahue\.cargo\registry\src\index.crates.io-6f17d22bba15001f\toml-0.8.13\src\edit.rs:
+C:\Users\nahue\.cargo\registry\src\index.crates.io-6f17d22bba15001f\toml-0.8.13\src\fmt.rs:
+C:\Users\nahue\.cargo\registry\src\index.crates.io-6f17d22bba15001f\toml-0.8.13\src\table.rs:

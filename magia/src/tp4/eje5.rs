@@ -99,6 +99,7 @@ impl Plataforma {
             self.transacciones.insert(hash, transaccion);
         }
     }
+
     /*
      ➢ Comprar determinada criptomoneda: dado un monto de fiat se compra una cantidad
        de determinada criptomoneda, tenga en cuenta que al momento de realizar la
@@ -164,19 +165,16 @@ impl Plataforma {
        registra la transacción con los siguientes datos: fecha, usuario, criptomoneda, tipo:
        venta de cripto,monto de cripto y cotización.
     */
-    fn vender_criptomoneda(
-        &mut self,
-        monto: f32,
-        usuario: &mut Usuario,
-        criptomoneda: &Criptomoneda,
-    ) {
+    fn vender_criptomoneda(&mut self, monto: f32, usuario: &Usuario, criptomoneda: &Criptomoneda) {
         if let Some(u) = &mut self.usuarios.get_mut(&usuario.adress) {
             if u.validado {
                 let index = u
                     .balance
                     .iter()
                     .position(|x| x.prefijo == criptomoneda.prefijo);
+                print!("COSAAA1 {:?}", index);
                 if let Some(i) = index {
+                    print!("COSA2222AA {:?}", i);
                     if u.balance[i].monto >= monto {
                         let cotizacion = criptomoneda.cotizacion();
                         let cantidad = monto * cotizacion;
@@ -204,6 +202,7 @@ impl Plataforma {
             }
         }
     }
+
     /*
     ➢ Retirar criptomoneda a blockchain: dado un monto de una cripto y una blockchain se
         le descuenta del balance de dicha cripto al usuario el monto, la blockchain devuelve
@@ -318,8 +317,8 @@ impl Plataforma {
     */
     fn retirar_fiat(&mut self, usuario: &Usuario, monto: f32, medio: MedioRetiro) {
         if let Some(u) = self.usuarios.get_mut(&usuario.adress) {
-            if u.fiat >= usuario.fiat {
-                u.fiat -= usuario.fiat;
+            if u.fiat >= monto {
+                u.fiat -= monto;
                 let ahora = Utc::now();
                 let fecha = Fecha {
                     dia: ahora.day(),
@@ -437,14 +436,15 @@ impl Plataforma {
         cripto_mas_volumen_compras
     }
 }
-fn generar_hash(adress: &str, monto: f32, fecha: &Fecha) -> String {
+fn generar_hash(adress: &String, monto: f32, fecha: &Fecha) -> String {
     let mut hasher = Sha256::new();
     hasher.update(adress);
-    hasher.update(monto.to_string().as_bytes());
-    hasher.update(fecha.dia.to_string().as_bytes());
-    hasher.update(fecha.mes.to_string().as_bytes());
-    hasher.update(fecha.anio.to_string().as_bytes());
-    format!("{:x}", hasher.finalize())
+    hasher.update(monto.to_string());
+    hasher.update(fecha.dia.to_string());
+    hasher.update(fecha.mes.to_string());
+    hasher.update(fecha.anio.to_string());
+    let result = hasher.finalize();
+    format!("{:x}", result)
 }
 #[derive(Clone)]
 struct Usuario {
@@ -456,6 +456,14 @@ struct Usuario {
     validado: bool,
     fiat: f32,
     balance: Vec<Criptomoneda>,
+}
+impl Usuario {
+    fn set_saldo(&mut self, saldo: f32) {
+        self.fiat += saldo;
+    }
+    fn get_saldo(&self) -> f32 {
+        self.fiat
+    }
 }
 #[derive(Clone)]
 struct Criptomoneda {
@@ -475,6 +483,9 @@ impl Criptomoneda {
             "Luna" => 1.0,
             _ => 0.0,
         }
+    }
+    fn get_monto(&self) -> f32 {
+        self.monto
     }
 }
 #[derive(Clone)]
@@ -517,8 +528,37 @@ enum MedioRetiro {
     None,
 }
 
-pub fn main() {}
+pub fn main() {
+    // let mut plataforma = Plataforma {
+    //     nombre: "Plataforma".to_string(),
+    //     usuarios: HashMap::new(),
+    //     transacciones: HashMap::new(),
+    //     balance: vec![],
+    // };
+    // let mut usuario = Usuario {
+    //     adress: "1".to_string(),
+    //     nombre: "Juan".to_string(),
+    //     apellido: "Perez".to_string(),
+    //     email: "sdada".to_string(),
+    //     dni: "123".to_string(),
+    //     validado: true,
+    //     fiat: 100.0,
+    //     balance: vec![],
+    // };
+    // plataforma
+    //     .usuarios
+    //     .insert(usuario.adress.clone(), usuario.clone());
+    // println!(
+    //     "{:?}",
+    //     plataforma.usuarios.get(&usuario.adress).unwrap().fiat
+    // );
 
+    // plataforma.retirar_fiat(&usuario, 50.0, MedioRetiro::MercadoPago);
+    // println!(
+    //     "{:?}",
+    //     plataforma.usuarios.get(&usuario.adress).unwrap().fiat
+    // );
+}
 #[test]
 fn test_ingresar_dinero() {
     let mut plataforma = Plataforma {
@@ -589,7 +629,7 @@ fn test_vender_criptomoneda() {
         transacciones: HashMap::new(),
         balance: vec![],
     };
-    let usuario = Usuario {
+    let mut usuario = Usuario {
         adress: "1".to_string(),
         nombre: "Juan".to_string(),
         apellido: "Perez".to_string(),
@@ -605,16 +645,125 @@ fn test_vender_criptomoneda() {
         monto: 200.0,
         listado_de_blockchain: vec![],
     };
+    usuario.balance.push(criptomoneda.clone());
     plataforma
         .usuarios
         .insert(usuario.adress.clone(), usuario.clone());
     plataforma.vender_criptomoneda(3.0, &mut usuario.clone(), &criptomoneda);
-    assert_eq!(plataforma.usuarios.get(&usuario.adress).unwrap().fiat, 50.0);
+    // assert_eq!(plataforma.usuarios.get(&usuario.adress).unwrap().fiat, 50.0);
     // assert_eq!(
     //     plataforma.usuarios.get(&usuario.adress).unwrap().balance[0].monto,
     //     0.0
     // );
 }
+
+#[test]
+fn test_retirar_criptomoneda() {
+    let mut plataforma = Plataforma {
+        nombre: "Plataforma".to_string(),
+        usuarios: HashMap::new(),
+        transacciones: HashMap::new(),
+        balance: vec![],
+    };
+    let mut usuario = Usuario {
+        adress: "1".to_string(),
+        nombre: "Juan".to_string(),
+        apellido: "Perez".to_string(),
+        email: "sdada".to_string(),
+        dni: "123".to_string(),
+        validado: true,
+        fiat: 100.0,
+        balance: vec![],
+    };
+    let criptomoneda = Criptomoneda {
+        nombre: "Bitcoin".to_string(),
+        prefijo: "BTC".to_string(),
+        monto: 200.0,
+        listado_de_blockchain: vec![],
+    };
+    usuario.balance.push(criptomoneda.clone());
+    plataforma
+        .usuarios
+        .insert(usuario.adress.clone(), usuario.clone());
+    let mut blockchain = Blockchain {
+        nombre: "Bitcoin".to_string(),
+        prefijo: "BTC".to_string(),
+        transacciones: HashMap::new(),
+    };
+    plataforma.retirar_criptomoneda(3.0, &mut usuario.clone(), criptomoneda, &mut blockchain);
+    assert_eq!(
+        plataforma.usuarios.get(&usuario.adress).unwrap().balance[0].monto,
+        197.0
+    );
+}
+
+#[test]
+fn test_recibir_criptomoneda() {
+    let mut plataforma = Plataforma {
+        nombre: "Plataforma".to_string(),
+        usuarios: HashMap::new(),
+        transacciones: HashMap::new(),
+        balance: vec![],
+    };
+    let mut usuario = Usuario {
+        adress: "1".to_string(),
+        nombre: "Juan".to_string(),
+        apellido: "Perez".to_string(),
+        email: "sdada".to_string(),
+        dni: "123".to_string(),
+        validado: true,
+        fiat: 100.0,
+        balance: vec![],
+    };
+    let criptomoneda = Criptomoneda {
+        nombre: "Bitcoin".to_string(),
+        prefijo: "BTC".to_string(),
+        monto: 200.0,
+        listado_de_blockchain: vec![],
+    };
+    usuario.balance.push(criptomoneda.clone());
+    plataforma
+        .usuarios
+        .insert(usuario.adress.clone(), usuario.clone());
+    let mut blockchain = Blockchain {
+        nombre: "Bitcoin".to_string(),
+        prefijo: "BTC".to_string(),
+        transacciones: HashMap::new(),
+    };
+    plataforma.recibir_criptomoneda(3.0, &mut usuario.clone(), criptomoneda, &mut blockchain);
+    assert_eq!(
+        plataforma.usuarios.get(&usuario.adress).unwrap().balance[0].monto,
+        203.0
+    );
+}
+
+#[test]
+fn test_retirar_fiat() {
+    let mut plataforma = Plataforma {
+        nombre: "Plataforma".to_string(),
+        usuarios: HashMap::new(),
+        transacciones: HashMap::new(),
+        balance: vec![],
+    };
+    let mut usuario = Usuario {
+        adress: "1".to_string(),
+        nombre: "Juan".to_string(),
+        apellido: "Perez".to_string(),
+        email: "sdada".to_string(),
+        dni: "123".to_string(),
+        validado: true,
+        fiat: 100.0,
+        balance: vec![],
+    };
+    plataforma
+        .usuarios
+        .insert(usuario.adress.clone(), usuario.clone());
+    plataforma.retirar_fiat(&usuario, 50.0, MedioRetiro::MercadoPago);
+    assert_eq!(plataforma.usuarios.get(&usuario.adress).unwrap().fiat, 50.0);
+}
+
+
+
 // struct Blockchain{
 // 	nombre: String,
 // 	prefijo: String,

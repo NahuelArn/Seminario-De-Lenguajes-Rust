@@ -467,3 +467,37 @@ impl Fecha {
 //=============================FECHA================================
 
 pub fn main() {}
+
+#[test]
+fn test_buscar_prestamo (){
+    let libro1 = Libro {
+        isbn: "1234".to_string(),
+        titulo: "El principito".to_string(),
+        autor: "Antoine de Saint-Exupéry".to_string(),
+        num_paginas: 100,
+        genero: Genero::Infantil,
+    };
+    let libro2 = Libro {
+        isbn: "1235".to_string(),
+        titulo: "El principito".to_string(),
+        autor: "Antoine de Saint-Exupéry".to_string(),
+        num_paginas: 100,
+        genero: Genero::Infantil,
+    };
+    biblioteca.libros_disponibles.push(Registro_libros {
+        libro: libro1,
+        cantidad_ejemplares: 5,
+    });
+    biblioteca.libros_disponibles.push(Registro_libros {
+        libro: libro2,
+        cantidad_ejemplares: 5,
+    });
+    let cliente = Cliente {
+        nombre: "Juan".to_string(),
+        telefono: "123456789".to_string(),
+        email: "".to_string(),
+    };
+    biblioteca.realizar_prestamo(libro1, cliente);
+    let prestamo = biblioteca.buscar_prestamo(&libro1, &cliente);
+    assert_eq!(prestamo.is_some(), true);
+}

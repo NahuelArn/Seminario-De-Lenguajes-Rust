@@ -1,0 +1,17 @@
+###########################################################################
+# libssh2 installation details
+###########################################################################
+
+prefix=D:\Escritorio\Rust\Seminario-De-Lenguajes-Rust\magia\src\coverage\debug\build\libssh2-sys-3b2942a2a3913993\out
+exec_prefix=
+libdir=D:\Escritorio\Rust\Seminario-De-Lenguajes-Rust\magia\src\coverage\debug\build\libssh2-sys-3b2942a2a3913993\out\lib
+includedir=D:\Escritorio\Rust\Seminario-De-Lenguajes-Rust\magia\src\coverage\debug\build\libssh2-sys-3b2942a2a3913993\out\include
+
+Name: libssh2
+URL: https://www.libssh2.org/
+Description: Library for SSH-based communication
+Version: 1.10.1_DEV
+Requires.private: 
+Libs: -L${libdir} -lssh2 
+Libs.private: 
+Cflags: -I${includedir}
