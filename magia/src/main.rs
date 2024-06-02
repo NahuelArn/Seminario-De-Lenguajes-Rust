@@ -40,8 +40,8 @@ fn main() {
     //----------------arranca el tp5-------------------
     // tp5::eje1::main();
     // tp5::eje2::main();
-    // tp5::eje3::main();
+    tp5::eje3::main();
     // tp5::eje4::main();
         // tp5::eje5::main();
-    tp5::eje6::main();
+    // tp5::eje6::main();
 }

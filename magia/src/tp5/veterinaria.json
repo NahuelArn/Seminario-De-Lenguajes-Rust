@@ -1,1 +1,1 @@
-[{"mascota":{"nombre":"Mascota1","edad":5,"tipo":"Perro","duenho":{"nombre":"Dueño9","direccion":"Direccion 10","telefono":123456789}},"diagnostico":"diagnostico","tratamiento":"tratamiento","requiere_proxima_visita":false,"fecha_proxima_visita":{"dia":1,"mes":1,"anho":2022}}]
+[{"mascota":{"nombre":"Mascota1","edad":5,"tipo":"Perro","duenho":{"nombre":"Dueño6","direccion":"Direccion 7","telefono":123456789}},"diagnostico":"diagnostico","tratamiento":"tratamiento","requiere_proxima_visita":false,"fecha_proxima_visita":{"dia":0,"mes":0,"anho":0}}]
