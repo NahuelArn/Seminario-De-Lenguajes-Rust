@@ -353,22 +353,21 @@ impl Plataforma {
     fn cripto_mas_vendida(&self) -> String {
         let mut cripto_mas_vendida = "".to_string();
         let mut maximo: f32 = 0.0;
+        let mut ventas: HashMap<String, f32> = HashMap::new();
+
         for (_, transaccion) in self.transacciones.iter() {
             if transaccion.tipo == "venta de cripto" {
                 if let Some(cripto) = &transaccion.criptomoneda {
-                    let index = self
-                        .balance
-                        .iter()
-                        .position(|x| x.prefijo == cripto.prefijo);
-                    if let Some(i) = index {
-                        if self.balance[i].monto > maximo {
-                            maximo = self.balance[i].monto;
-                            cripto_mas_vendida = self.balance[i].prefijo.clone();
-                        }
+                    let entry = ventas.entry(cripto.prefijo.clone()).or_insert(0.0);
+                    *entry += transaccion.monto;
+                    if *entry > maximo {
+                        maximo = *entry;
+                        cripto_mas_vendida = cripto.prefijo.clone();
                     }
                 }
             }
         }
+
         cripto_mas_vendida
     }
 
@@ -403,22 +402,21 @@ impl Plataforma {
     fn cripto_mas_volumen_ventas(&self) -> String {
         let mut cripto_mas_volumen_ventas = "".to_string();
         let mut maximo: f32 = 0.0;
+        let mut ventas: HashMap<String, f32> = HashMap::new();
+
         for (_, transaccion) in self.transacciones.iter() {
             if transaccion.tipo == "venta de cripto" {
                 if let Some(cripto) = &transaccion.criptomoneda {
-                    let index = self
-                        .balance
-                        .iter()
-                        .position(|x| x.prefijo == cripto.prefijo);
-                    if let Some(i) = index {
-                        if transaccion.monto > maximo {
-                            maximo = transaccion.monto;
-                            cripto_mas_volumen_ventas = self.balance[i].prefijo.clone();
-                        }
+                    let entry = ventas.entry(cripto.prefijo.clone()).or_insert(0.0);
+                    *entry += transaccion.monto;
+                    if *entry > maximo {
+                        maximo = *entry;
+                        cripto_mas_volumen_ventas = cripto.prefijo.clone();
                     }
                 }
             }
         }
+
         cripto_mas_volumen_ventas
     }
 
@@ -426,22 +424,21 @@ impl Plataforma {
     fn cripto_mas_volumen_compras(&self) -> String {
         let mut cripto_mas_volumen_compras = "".to_string();
         let mut maximo: f32 = 0.0;
+        let mut compras: HashMap<String, f32> = HashMap::new();
+
         for (_, transaccion) in self.transacciones.iter() {
             if transaccion.tipo == "compra de cripto" {
                 if let Some(cripto) = &transaccion.criptomoneda {
-                    let index = self
-                        .balance
-                        .iter()
-                        .position(|x| x.prefijo == cripto.prefijo);
-                    if let Some(i) = index {
-                        if transaccion.monto > maximo {
-                            maximo = transaccion.monto;
-                            cripto_mas_volumen_compras = self.balance[i].prefijo.clone();
-                        }
+                    let entry = compras.entry(cripto.prefijo.clone()).or_insert(0.0);
+                    *entry += transaccion.monto;
+                    if *entry > maximo {
+                        maximo = *entry;
+                        cripto_mas_volumen_compras = cripto.prefijo.clone();
                     }
                 }
             }
         }
+
         cripto_mas_volumen_compras
     }
 }
@@ -537,37 +534,7 @@ enum MedioRetiro {
     None,
 }
 
-pub fn main() {
-    // let mut plataforma = Plataforma {
-    //     nombre: "Plataforma".to_string(),
-    //     usuarios: HashMap::new(),
-    //     transacciones: HashMap::new(),
-    //     balance: vec![],
-    // };
-    // let mut usuario = Usuario {
-    //     adress: "1".to_string(),
-    //     nombre: "Juan".to_string(),
-    //     apellido: "Perez".to_string(),
-    //     email: "sdada".to_string(),
-    //     dni: "123".to_string(),
-    //     validado: true,
-    //     fiat: 100.0,
-    //     balance: vec![],
-    // };
-    // plataforma
-    //     .usuarios
-    //     .insert(usuario.adress.clone(), usuario.clone());
-    // println!(
-    //     "{:?}",
-    //     plataforma.usuarios.get(&usuario.adress).unwrap().fiat
-    // );
-
-    // plataforma.retirar_fiat(&usuario, 50.0, MedioRetiro::MercadoPago);
-    // println!(
-    //     "{:?}",
-    //     plataforma.usuarios.get(&usuario.adress).unwrap().fiat
-    // );
-}
+pub fn main() {}
 #[test]
 fn test_ingresar_dinero() {
     let mut plataforma = Plataforma {
@@ -862,10 +829,46 @@ fn test_cripto_mas_volumen_ventas() {
     plataforma
         .usuarios
         .insert(usuario.adress.clone(), usuario.clone());
+
+    // Debes implementar la función vender_criptomoneda para que añada transacciones.
     plataforma.vender_criptomoneda(3.0, &usuario, &criptomoneda);
+
+    // Ahora podemos llamar a cripto_mas_volumen_ventas
+    // print!("{:?}", plataforma.cripto_mas_volumen_ventas());
     assert_eq!(plataforma.cripto_mas_volumen_ventas(), "BTC".to_string());
 }
 
+#[test]
+fn test_cripto_mas_volumen_compras() {
+    let mut plataforma = Plataforma {
+        nombre: "Plataforma".to_string(),
+        usuarios: HashMap::new(),
+        transacciones: HashMap::new(),
+        balance: vec![],
+    };
+    let mut usuario = Usuario {
+        adress: "1".to_string(),
+        nombre: "Juan".to_string(),
+        apellido: "Perez".to_string(),
+        email: "sdada".to_string(),
+        dni: "123".to_string(),
+        validado: true,
+        fiat: 100.0,
+        balance: vec![],
+    };
+    let criptomoneda = Criptomoneda {
+        nombre: "Bitcoin".to_string(),
+        prefijo: "BTC".to_string(),
+        monto: 200.0,
+        listado_de_blockchain: vec![],
+    };
+    usuario.balance.push(criptomoneda.clone());
+    plataforma
+        .usuarios
+        .insert(usuario.adress.clone(), usuario.clone());
+    plataforma.comprar_criptomoneda(50.0, &mut usuario.clone(), &criptomoneda);
+    assert_eq!(plataforma.cripto_mas_volumen_compras(), "BTC".to_string());
+}
 
 // struct Blockchain{
 // 	nombre: String,
