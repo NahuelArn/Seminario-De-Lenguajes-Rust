@@ -4,4 +4,9 @@
 # /src
 # Cargo.lock
 # Cargo.toml
-/target/debug
+/target/debug/deps/*.d
+/target/debug/deps/*.rlib
+/target/debug/deps/*.so
+/target/debug/deps/*.dll
+/target/debug/deps/*.a
+/target/debug/.fingerprint

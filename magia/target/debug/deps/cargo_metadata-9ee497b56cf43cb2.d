@@ -1,9 +1,0 @@
-D:\Escritorio\Rust\Seminario-De-Lenguajes-Rust\magia\target\debug\deps\libcargo_metadata-9ee497b56cf43cb2.rmeta: C:\Users\nahue\.cargo\registry\src\index.crates.io-6f17d22bba15001f\cargo_metadata-0.18.1\src\lib.rs C:\Users\nahue\.cargo\registry\src\index.crates.io-6f17d22bba15001f\cargo_metadata-0.18.1\src\dependency.rs C:\Users\nahue\.cargo\registry\src\index.crates.io-6f17d22bba15001f\cargo_metadata-0.18.1\src\diagnostic.rs C:\Users\nahue\.cargo\registry\src\index.crates.io-6f17d22bba15001f\cargo_metadata-0.18.1\src\errors.rs C:\Users\nahue\.cargo\registry\src\index.crates.io-6f17d22bba15001f\cargo_metadata-0.18.1\src\messages.rs
-
-D:\Escritorio\Rust\Seminario-De-Lenguajes-Rust\magia\target\debug\deps\cargo_metadata-9ee497b56cf43cb2.d: C:\Users\nahue\.cargo\registry\src\index.crates.io-6f17d22bba15001f\cargo_metadata-0.18.1\src\lib.rs C:\Users\nahue\.cargo\registry\src\index.crates.io-6f17d22bba15001f\cargo_metadata-0.18.1\src\dependency.rs C:\Users\nahue\.cargo\registry\src\index.crates.io-6f17d22bba15001f\cargo_metadata-0.18.1\src\diagnostic.rs C:\Users\nahue\.cargo\registry\src\index.crates.io-6f17d22bba15001f\cargo_metadata-0.18.1\src\errors.rs C:\Users\nahue\.cargo\registry\src\index.crates.io-6f17d22bba15001f\cargo_metadata-0.18.1\src\messages.rs
-
-C:\Users\nahue\.cargo\registry\src\index.crates.io-6f17d22bba15001f\cargo_metadata-0.18.1\src\lib.rs:
-C:\Users\nahue\.cargo\registry\src\index.crates.io-6f17d22bba15001f\cargo_metadata-0.18.1\src\dependency.rs:
-C:\Users\nahue\.cargo\registry\src\index.crates.io-6f17d22bba15001f\cargo_metadata-0.18.1\src\diagnostic.rs:
-C:\Users\nahue\.cargo\registry\src\index.crates.io-6f17d22bba15001f\cargo_metadata-0.18.1\src\errors.rs:
-C:\Users\nahue\.cargo\registry\src\index.crates.io-6f17d22bba15001f\cargo_metadata-0.18.1\src\messages.rs:
